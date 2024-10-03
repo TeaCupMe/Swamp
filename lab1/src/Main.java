@@ -1,5 +1,3 @@
-import java.awt.image.AreaAveragingScaleFilter;
-import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -7,7 +5,7 @@ public class Main {
     /**
      * Main для бинарного поиска
      */
-    public static void main2(String[] args) {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Введите искомое значение: ");
@@ -17,9 +15,9 @@ public class Main {
         array = getArray(in);
         Arrays.sort(array);
 
-        // int resultIndex = binarySearch(array, requiredValue);
-        int resultIndex = binarySearchRecursive(array, requiredValue, 0, array.length - 1);
-        System.out.printf("Найденное значение — %d. Мы хотели получить %d.", array[resultIndex], requiredValue);
+        int resultIndex = binarySearch(array, requiredValue);
+        // int resultIndex = binarySearchRecursive(array, requiredValue, 0, array.length - 1);
+        System.out.printf("Найденный индекс — %d", resultIndex);
         in.close();
     }
 
@@ -40,15 +38,18 @@ public class Main {
     private static int binarySearch(int[] array, int requiredValue) {
         int leftBorder = 0, rightBorder = array.length - 1;
         int middle = (leftBorder + rightBorder) / 2;
-        while (array[middle] != requiredValue) {
-            if (requiredValue < middle) {
-                rightBorder = middle;
+        while (leftBorder <= rightBorder) {
+            if (array[middle] == requiredValue) {
+                return middle;
+            }
+            if (requiredValue < array[middle]) {
+                rightBorder = middle - 1;
             } else {
-                leftBorder = middle;
+                leftBorder = middle + 1;
             }
             middle = (leftBorder + rightBorder) / 2;
         }
-        return middle;
+        return -1;
     }
 
     /**
@@ -125,11 +126,14 @@ public class Main {
     /**
      * Б-14. Сумма двух минимальных положительных чисел
      */
-    public static void main(String[] args) {
+    public static void b14(String[] args) {
         Scanner in = new Scanner(System.in);
+
         int[] array = getArray(in);
-        int min1 = -1, min2 = min1;
         Arrays.sort(array);
+        int min1 = -1, min2 = min1;
+
+
         for (int i = 0; i < array.length; i++) {
             if (array[i] > 0) {
                 if (min1 == -1) {
@@ -175,12 +179,29 @@ public class Main {
         in.close();
     }
 
-    private static int getLength(int number) {
-        int length = 0;
-        while (number != 0) {
-            number /= 10;
-            length++;
+    /**
+     * Б-1. Отсортировать массив так, чтобы сначала шли чётные числа, а за ними — нечётные.
+     */
+    public static void b1(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int[] array = getArray(in);
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 1; j < array.length; j++) {
+                if ((array[j] % 2 == 0) && (array[j-1] % 2 != 0)) {
+                    int tmp = array[j-1];
+                    array[j-1] = array[j];
+                    array[j] = tmp;
+                }
+            }
         }
-        return length;
+
+        printArray(array);
+    }
+
+    private static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.printf("%d ", array[i]);
+        }
     }
 }
