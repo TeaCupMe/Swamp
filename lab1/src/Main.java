@@ -1,3 +1,5 @@
+import java.awt.image.AreaAveragingScaleFilter;
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.Arrays;
 
@@ -121,13 +123,64 @@ public class Main {
     }
 
     /**
-     * Б-13. 1234 * 11 -> [1,2,3,4] * [1,1] -> [1,3,5,7,9]
+     * Б-14. Сумма двух минимальных положительных чисел
      */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int number1 = in.nextInt(), number2 = in.nextInt();
-        int[] arrayNumber1;
+        int[] array = getArray(in);
+        int min1 = -1, min2 = min1;
+        Arrays.sort(array);
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > 0) {
+                if (min1 == -1) {
+                    min1 = array[i];
+                }
+                else {
+                    if (min2 == -1) {
+                        if (min1 < array[i]) {
+                            min2 = array[i];
+                        }
+                        else {
+                            if (min1 > array[i]) {
+                                min2 = min1;
+                                min1 = array[i];
+                            }
+                        }
+                    }
+                }
+                if (min1 > array[i]) {
+                    min2 = min1;
+                    min1 = array[i];
+                }
+                else {
+                    if (min2 > array[i]) {
+                        min2 = array[i];
+                    }
+                }
+            }
+        }
 
+        if ((min1 == min2) && (min1 == -1)) {
+            System.out.println("Нет положительных чисел");
+        }
+        else {
+            if ((min2 == -1)) {
+                System.out.println("Только одно положительное число");
+            }
+            else {
+                System.out.printf("Сумма наименьших положительных чисел %d + %d = %d", min1, min2, (min1 + min2));
+            }
+        }
 
+        in.close();
+    }
+
+    private static int getLength(int number) {
+        int length = 0;
+        while (number != 0) {
+            number /= 10;
+            length++;
+        }
+        return length;
     }
 }
