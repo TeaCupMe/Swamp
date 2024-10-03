@@ -137,25 +137,22 @@ public class Main {
             if (array[i] > 0) {
                 if (min1 == -1) {
                     min1 = array[i];
-                }
-                else {
+                } else {
                     if (min2 == -1) {
-                        if (min1 < array[i]) {
+                        if (min1 <= array[i]) {
                             min2 = array[i];
-                        }
-                        else {
-                            if (min1 > array[i]) {
+                        } else {
+                            if (min1 >= array[i]) {
                                 min2 = min1;
                                 min1 = array[i];
                             }
                         }
                     }
                 }
-                if (min1 > array[i]) {
+                if (min1 >= array[i]) {
                     min2 = min1;
                     min1 = array[i];
-                }
-                else {
+                } else {
                     if (min2 > array[i]) {
                         min2 = array[i];
                     }
@@ -169,12 +166,10 @@ public class Main {
     private static void showResult(int min1, int min2) {
         if ((min1 == min2) && (min1 == -1)) {
             System.out.println("Нет положительных чисел");
-        }
-        else {
+        } else {
             if ((min2 == -1)) {
                 System.out.println("Только одно положительное число");
-            }
-            else {
+            } else {
                 System.out.printf("Сумма наименьших положительных чисел %d + %d = %d", min1, min2, (min1 + min2));
             }
         }
@@ -183,15 +178,15 @@ public class Main {
     /**
      * Б-1. Отсортировать массив так, чтобы сначала шли чётные числа, а за ними — нечётные.
      */
-    public static void main(String[] args) {
+    public static void b1(String[] args) {
         Scanner in = new Scanner(System.in);
         int[] array = getArray(in);
 
         for (int i = 0; i < array.length; i++) {
             for (int j = 1; j < array.length; j++) {
-                if ((array[j] % 2 == 0) && (array[j-1] % 2 != 0)) {
-                    int tmp = array[j-1];
-                    array[j-1] = array[j];
+                if ((array[j] % 2 == 0) && (array[j - 1] % 2 != 0)) {
+                    int tmp = array[j - 1];
+                    array[j - 1] = array[j];
                     array[j] = tmp;
                 }
             }
