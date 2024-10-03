@@ -5,7 +5,7 @@ public class Main {
     /**
      * Main для бинарного поиска
      */
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         Scanner in = new Scanner(System.in);
 
         System.out.print("Введите искомое значение: ");
@@ -133,7 +133,6 @@ public class Main {
         Arrays.sort(array);
         int min1 = -1, min2 = min1;
 
-
         for (int i = 0; i < array.length; i++) {
             if (array[i] > 0) {
                 if (min1 == -1) {
@@ -163,7 +162,11 @@ public class Main {
                 }
             }
         }
+        showResult(min1, min2);
+        in.close();
+    }
 
+    private static void showResult(int min1, int min2) {
         if ((min1 == min2) && (min1 == -1)) {
             System.out.println("Нет положительных чисел");
         }
@@ -175,14 +178,12 @@ public class Main {
                 System.out.printf("Сумма наименьших положительных чисел %d + %d = %d", min1, min2, (min1 + min2));
             }
         }
-
-        in.close();
     }
 
     /**
      * Б-1. Отсортировать массив так, чтобы сначала шли чётные числа, а за ними — нечётные.
      */
-    public static void b1(String[] args) {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int[] array = getArray(in);
 
