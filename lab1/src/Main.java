@@ -16,8 +16,9 @@ public class Main {
         Arrays.sort(array);
 
         int resultIndex = binarySearch(array, requiredValue);
-        // int resultIndex = binarySearchRecursive(array, requiredValue, 0, array.length - 1);
-        System.out.printf("Найденный индекс — %d", resultIndex);
+        int resultIndex2 = binarySearchRecursive(array, requiredValue, 0, array.length - 1);
+        System.out.printf("Найденный индекс — %d ", resultIndex);
+        System.out.printf("Найденный индекс — %d rec", resultIndex2);
         in.close();
     }
 
@@ -72,7 +73,7 @@ public class Main {
     /**
      * В-3. camelCase -> camel Case.
      */
-    public static void v3(String[] args) {
+    public static void v3main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите строку: ");
         String string = in.nextLine();
@@ -100,7 +101,7 @@ public class Main {
         numberStr = getStringWithHyphen(numberStr);
         String result = catchExceptions(numberStr);
 
-        System.out.println(replacement(result));
+        System.out.println(result);
         in.close();
     }
 
@@ -126,7 +127,7 @@ public class Main {
     /**
      * Б-14. Сумма двух минимальных положительных чисел
      */
-    public static void b14(String[] args) {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
         int[] array = getArray(in);
@@ -148,13 +149,13 @@ public class Main {
                             }
                         }
                     }
-                }
-                if (min1 >= array[i]) {
-                    min2 = min1;
-                    min1 = array[i];
-                } else {
-                    if (min2 > array[i]) {
-                        min2 = array[i];
+                    if (min1 >= array[i]) {
+                        min2 = min1;
+                        min1 = array[i];
+                    } else {
+                        if (min2 > array[i]) {
+                            min2 = array[i];
+                        }
                     }
                 }
             }
