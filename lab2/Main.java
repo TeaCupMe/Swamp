@@ -46,25 +46,25 @@ public class Main {
         start = System.nanoTime();
         studentsArr.add(student);
         finish = System.nanoTime();
-        System.out.printf("Время добавления в array = %d нс\n", finish - start);
+        System.out.printf("Время добавления в конец array = %d нс\n", finish - start);
 
         // List
         start = System.nanoTime();
         studentsList.add(student);
         finish = System.nanoTime();
-        System.out.printf("Время добавления в list = %d нс\n", finish - start);
+        System.out.printf("Время добавления в конец list = %d нс\n", finish - start);
 
         // Map
         start = System.nanoTime();
         studentsMap.put(SIZE, student);
         finish = System.nanoTime();
-        System.out.printf("Время добавления в map = %d нс\n", finish - start);
+        System.out.printf("Время добавления в конец map = %d нс\n", finish - start);
 
         // Set
         start = System.nanoTime();
         studentsSet.add(student);
         finish = System.nanoTime();
-        System.out.printf("Время добавления в set = %d нс\n", finish - start);
+        System.out.printf("Время добавления в конец set = %d нс\n", finish - start);
     }
 
     private static void addFirstInCollections(long SIZE, String[] names,
@@ -74,7 +74,7 @@ public class Main {
                                               HashSet<Student> studentsSet) {
         long start, finish;
         // Array
-        Student student = new Student(SIZE, names[0]);
+        Student student = new Student((long) -1, names[0]);
         start = System.nanoTime();
         studentsArr.addFirst(student);
         finish = System.nanoTime();
@@ -88,13 +88,13 @@ public class Main {
 
         // Map
         start = System.nanoTime();
-        studentsMap.put(SIZE, student); // Todo
+        studentsMap.put((long) -1, student); // Todo made
         finish = System.nanoTime();
         System.out.printf("Время добавления первого элемента в map = %d нс\n", finish - start);
 
         // Set
         start = System.nanoTime();
-        studentsSet.add(student); // Todo
+        studentsSet.add(student); // Todo made
         finish = System.nanoTime();
         System.out.printf("Время добавления первого элемента в set = %d нс\n", finish - start);
     }
