@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 
 public class Main {
@@ -108,6 +105,7 @@ public class Main {
                                                    HashMap<Long, Student> students_map,
                                                    HashSet<Student> students_set) {
         long start, finish;
+        Student student = students_arr.getFirst();
         // Array
         start = System.nanoTime();
         students_arr.removeFirst();
@@ -127,8 +125,6 @@ public class Main {
         System.out.printf("Время удаления первого элемента в map = %d нс\n", finish - start);
 
         // Set
-
-        Student student = getStudentById(students_set, (long) 0);
         start = System.nanoTime();
         students_set.remove(student);
         finish = System.nanoTime();
@@ -193,12 +189,12 @@ public class Main {
         System.out.printf("Время поиска центрального элемента в map = %d нс\n", finish - start);
 
         // Set
-/*
+
         start = System.nanoTime();
-        Student student_from_set = getStudentById(students_set, SIZE/2);
+        Student student_from_set = getStudentById(students_set, student_from_arr);
         finish = System.nanoTime();
         System.out.printf("Время поиска центрального элемента в set = %d нс\n", finish - start);
-*/    }
+    }
 
     private static void getLastElement(long SIZE, String[] names,
                                           ArrayList<Student> students_arr,
@@ -225,19 +221,19 @@ public class Main {
         System.out.printf("Время поиска последнего элемента в map = %d нс\n", finish - start);
 
         // Set
-/*
+
         start = System.nanoTime();
-        Student student_from_set = getStudentById(students_set, SIZE/2);
+        Student student_from_set = getStudentById(students_set, student_from_arr);
         finish = System.nanoTime();
         System.out.printf("Время поиска последнего элемента в set = %d нс\n", finish - start);
-*/    }
+    }
 
-    public static Student getStudentById(HashSet<Student> students_set, Long id) {
-        for (Student student : students_set) {
-            if (student.getId() == id) {
-                return student;
+    public static Student getStudentById(HashSet<Student> students_set, Student student) {
+        for (Student man : students_set) {
+            if (man.equals(student)) {
+                return man;
             }
         }
-        return getStudentById(students_set, id+1);
+        return student;
     }
 }
