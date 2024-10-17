@@ -3,7 +3,7 @@ import java.util.ArrayDeque;
 
 public class B1 {
 
-    public static class Tuple2<K, V> {
+    public static class Tuple2<K, V> { // Generic, классы-обёртки
 
         private K last;
         private V current;
@@ -25,10 +25,10 @@ public class B1 {
         }
     }
 
-    public static void addNode(Node head, Node node, boolean is_child) {
+    public static void addNode(Node head, Node node, boolean isChild) {
         Node next = head.next;
         Node child = head.child;
-        if (is_child) {
+        if (isChild) {
             head.child = node;
             node.child = child;
         } else {
@@ -118,11 +118,11 @@ public class B1 {
         if (head == null) {
             return 0;
         }
-        int _count = 0;
+        int count = 0;
         if (head.data == data) {
-            _count = 1;
+            count = 1;
         }
-        return count(head.next, data) + count(head.child, data) + _count;
+        return count(head.next, data) + count(head.child, data) + count;
     }
 
     public static void main(String[] args) {
