@@ -13,8 +13,7 @@ public class Main {
         HashMap<Long, Student> students_map = new HashMap<Long, Student>();
         HashSet<Student> students_set = new HashSet<Student>();
         String[] names = {
-                "Джон", "Сэм", "Келли", "Линда", "Фред",
-                "Курт", "Кэт", "Картер", "Шесть", "Кортана",
+                "Name",
         };
 
         for (long i = 0; i < SIZE; i++) {
@@ -32,6 +31,11 @@ public class Main {
         removeFirstFromCollections((long) SIZE, names, students_arr, students_list, students_map, students_set);
         System.out.println("\n---------------\n");
         removeLastFromCollections((long) SIZE, names, students_arr, students_list, students_map, students_set);
+        System.out.println("\n---------------\n");
+        getCentralElement((long) SIZE, names, students_arr, students_list, students_map, students_set);
+        System.out.println("\n---------------\n");
+        getLastElement((long) SIZE, names, students_arr, students_list, students_map, students_set);
+
     }
 
     private static void addLastInCollections(long SIZE, String[] names,
@@ -163,6 +167,70 @@ public class Main {
         finish = System.nanoTime();
         System.out.printf("Время удаления последнего элемента в set = %d нс\n", finish - start);
     }
+
+    private static void getCentralElement(long SIZE, String[] names,
+                                                   ArrayList<Student> students_arr,
+                                                   LinkedList<Student> students_list,
+                                                   HashMap<Long, Student> students_map,
+                                                   HashSet<Student> students_set) {
+        long start, finish;
+        // Array
+        start = System.nanoTime();
+        Student student_from_arr = students_arr.get((int) SIZE/2);
+        finish = System.nanoTime();
+        System.out.printf("Время поиска центрального элемента в array = %d нс\n", finish - start);
+
+        // List
+        start = System.nanoTime();
+        Student student_from_list = students_list.get((int) SIZE/2);
+        finish = System.nanoTime();
+        System.out.printf("Время поиска центрального элемента в list = %d нс\n", finish - start);
+
+        // Map
+        start = System.nanoTime();
+        Student student_from_map = students_map.get(SIZE/2);
+        finish = System.nanoTime();
+        System.out.printf("Время поиска центрального элемента в map = %d нс\n", finish - start);
+
+        // Set
+/*
+        start = System.nanoTime();
+        Student student_from_set = getStudentById(students_set, SIZE/2);
+        finish = System.nanoTime();
+        System.out.printf("Время поиска центрального элемента в set = %d нс\n", finish - start);
+*/    }
+
+    private static void getLastElement(long SIZE, String[] names,
+                                          ArrayList<Student> students_arr,
+                                          LinkedList<Student> students_list,
+                                          HashMap<Long, Student> students_map,
+                                          HashSet<Student> students_set) {
+        long start, finish;
+        // Array
+        start = System.nanoTime();
+        Student student_from_arr = students_arr.get((int) SIZE-1);
+        finish = System.nanoTime();
+        System.out.printf("Время поиска последнего элемента в array = %d нс\n", finish - start);
+
+        // List
+        start = System.nanoTime();
+        Student student_from_list = students_list.get((int) SIZE-1);
+        finish = System.nanoTime();
+        System.out.printf("Время поиска последнего элемента в list = %d нс\n", finish - start);
+
+        // Map
+        start = System.nanoTime();
+        Student student_from_map = students_map.get(SIZE-1);
+        finish = System.nanoTime();
+        System.out.printf("Время поиска последнего элемента в map = %d нс\n", finish - start);
+
+        // Set
+/*
+        start = System.nanoTime();
+        Student student_from_set = getStudentById(students_set, SIZE/2);
+        finish = System.nanoTime();
+        System.out.printf("Время поиска последнего элемента в set = %d нс\n", finish - start);
+*/    }
 
     public static Student getStudentById(HashSet<Student> students_set, Long id) {
         for (Student student : students_set) {
