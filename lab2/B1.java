@@ -1,8 +1,10 @@
 import java.util.Deque;
 import java.util.ArrayDeque;
 
+/**
+ * Реализация многоуровневого связанного однонаправленного списка.
+ */
 public class B1 {
-
     public static class Tuple2<K, V> { // Generic, классы-обёртки
 
         private K last;
